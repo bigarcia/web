@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/")
+@WebServlet(urlPatterns = "/locadora")
 public class LocadoraController extends HttpServlet {
 
     private LocadoraDAO dao;

@@ -1,4 +1,4 @@
-opiar DROP TABLE Locacao;
+DROP TABLE Locacao;
 DROP TABLE Locadora;
 DROP TABLE Cliente;
 
@@ -41,3 +41,18 @@ insert into Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locador
 
 insert into Locacao(data_dia, cpf_cliente, cnpj_locadora) values ('15/04/2019', '23101125810', '987147963200'); */
 
+create table Usuario
+(
+id integer not null generated always as identity (start with 1, increment by 1),
+email varchar(50) not null,
+senha varchar(100) not null,
+ativo smallint not null,
+CONSTRAINT Usuario_PK PRIMARY KEY (id)
+);
+
+create table Papel (
+id integer not null generated always as identity (start with 1, increment by 1),
+email varchar(50) not null,
+nome varchar(50) not null,
+constraint Papel_PK PRIMARY KEY (id)
+);

@@ -1,15 +1,8 @@
 package br.ufscar.dc.dsw.login;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import javax.sql.DataSource;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.PreparedStatement;
 
-import javax.sql.DataSource;
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

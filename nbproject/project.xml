@@ -82,7 +82,6 @@
             <web-module-additional-libraries/>
             <source-roots>
                 <root id="src.dir" name="Pacotes de Códigos-fonte"/>
-                <root id="src.jvm.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir" name="Pacotes de Teste"/>

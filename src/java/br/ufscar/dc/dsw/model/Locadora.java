@@ -23,13 +23,6 @@ public class Locadora {
         this.cidade_locadora = cidade_locadora;
     }
 
-    public Locadora() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Locadora(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public String getCnpj_locadora() {
         return cnpj_locadora;
