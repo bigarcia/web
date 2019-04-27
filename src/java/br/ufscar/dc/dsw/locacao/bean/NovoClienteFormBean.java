@@ -8,7 +8,11 @@ import java.util.List;
 public class NovoClienteFormBean {
 
     private String email_cliente, senha_cliente, cpf_cliente, nome_cliente, telefone_cliente, sexo_cliente, nascimento_cliente;
-
+   /* private int id_cliente;
+    
+   public int getId_cliente(){
+       return id_cliente;        
+   }*/
     public String getEmail_cliente() {
         return email_cliente;
     }

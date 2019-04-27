@@ -3,6 +3,7 @@ DROP TABLE Locadora;
 DROP TABLE Cliente;
 
 create table Cliente(
+    /*id_cliente integer not null generated always as identity(start with 1, increment by 1),*/
     email_cliente varchar(50) not null,
     senha_cliente varchar(100) not null,
     cpf_cliente varchar(15) not null,

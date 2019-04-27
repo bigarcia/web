@@ -21,7 +21,17 @@ public class Cliente {
         this.nascimento_cliente = nascimento_cliente;
     }
     
-    public Cliente(String cpf_clinte){
+     public Cliente(String email_cliente, String senha_cliente, String nome_cliente, String telefone_cliente, String sexo_cliente, String nascimento_cliente) {
+        this.email_cliente = email_cliente;
+        this.senha_cliente = senha_cliente;
+       // this.cpf_cliente = cpf_cliente;
+        this.nome_cliente = nome_cliente;
+        this.telefone_cliente = telefone_cliente;
+        this.sexo_cliente = sexo_cliente;
+        this.nascimento_cliente = nascimento_cliente;
+    }
+    
+    public Cliente(String cpf_cliente){
         this.cpf_cliente = cpf_cliente;
     }
 
@@ -33,9 +43,10 @@ public class Cliente {
         this.data_dia = data_dia;
     }*/
 
-    /*public Cliente(int id) {
+   /* public Cliente(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+
     
 
    /* public Cliente(String email_cliente, String senha_cliente, String cpf_cliente, String nome_cliente, String telefone_cliente, String sexo_cliente, java.util.Date nascimento_cliente) {
@@ -48,7 +59,7 @@ public class Cliente {
         this.nascimento_cliente = nascimento_cliente;
     }*/
 
-  /* public int getId_cliente() {
+   /* public int getId_cliente() {
         return id_cliente;
     }
 
