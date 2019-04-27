@@ -26,6 +26,10 @@ public class Locadora {
     public Locadora (String cnpj_locadora){
         this.cnpj_locadora = cnpj_locadora;
     }
+    
+    public Locadora(){
+        
+    }
 
 
     public String getCnpj_locadora() {

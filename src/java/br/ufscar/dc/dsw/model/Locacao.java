@@ -29,6 +29,10 @@ public class Locacao {
     public Locacao(int id) {
         this.id_locacao = id;
     }
+    
+    public Locacao(){
+        
+    }
 
     /*public Locacao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -34,6 +34,10 @@ public class Cliente {
     public Cliente(String cpf_cliente){
         this.cpf_cliente = cpf_cliente;
     }
+    
+    public Cliente(){
+        
+    }
 
 
  
