@@ -22,7 +22,7 @@ public class VerLocadoraServlet extends HttpServlet {
 				todasLocadoras = locadoraDAO.listarTodasLocadoras();
 			} 
 			else {
-				todasLocadoras = locadoraDAO.listarTodasLocadorasPorCidade(cidade_locadora);
+				todasLocadoras = locadoraDAO.listarTodasPorCidade(cidade_locadora);
 			}
 			request.setAttribute("listaLocadora", todasLocadoras);
 			request.getRequestDispatcher("listaLocadora.jsp").forward(request, response);

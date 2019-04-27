@@ -16,11 +16,15 @@ public class Locadora {
         this.cidade_locadora = cidade_locadora;
     }
 
-    public Locadora(String email_locadora, String senha_locadora, String nome_locadora, String cidade_locadora) {
+    /*public Locadora(String email_locadora, String senha_locadora, String nome_locadora, String cidade_locadora) {
         this.email_locadora = email_locadora;
         this.senha_locadora = senha_locadora;
         this.nome_locadora = nome_locadora;
         this.cidade_locadora = cidade_locadora;
+    }*/
+    
+    public Locadora (String cnpj_locadora){
+        this.cnpj_locadora = cnpj_locadora;
     }
 
 

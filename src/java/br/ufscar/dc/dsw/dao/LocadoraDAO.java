@@ -1,4 +1,4 @@
-package br.ufscar.dc.dsw.dao; 
+package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.model.Locadora;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import java.util.List;
 public class LocadoraDAO extends GenericDAO {
 
     private final static String CRIAR_LOCADORA_SQL = "insert into Locadora" + " (email_locadora, senha_locadora, cnpj_locadora, nome_locadora, cidade_locadora)" + "values(?,?,?,?,?)";
-    private final static String LISTAR_LOCADORA_SQL = "select" + "*" + "from Locadora" ; 
+    private final static String LISTAR_LOCADORA_SQL = "select" + "*" + "from Locadora";
     //private final static String LISTAR_LOCADORA_SQL = "select" + "email_locadora, cnpj_locadora, nome_locadora, cidade_locadora)"+ "from locadora" ;
     private final static String LISTAR_LOCADORA_CIDADE_SQL = "select" + "email_locadora, cnpj_locadora, nome_locadora, cidade_locadora)" + "where cidade_locadora = ?";
 
@@ -24,7 +24,7 @@ public class LocadoraDAO extends GenericDAO {
             ps.setString(3, locadora.getSenha_locadora());
             ps.setString(4, locadora.getNome_locadora());
             ps.setString(5, locadora.getCidade_locadora());
-            
+
             ps.execute();
             ResultSet rs = ps.getGeneratedKeys();
             rs.next();
@@ -33,8 +33,50 @@ public class LocadoraDAO extends GenericDAO {
     }
 
 //Teoricamente, o método a seguir já lista todas as locadoras. Verificar se é melhor deixar ele ou o seguinte, que já tava implementado
+    /*public List<Locadora> listarTodasLocadoras()  throws SQLException {
+        List<Locadora> listaTodasLocadoras = new ArrayList<>();
+            try (Connection con = this.getConnection()) {
+                PreparedStatement ps = con.prepareStatement(LISTAR_LOCADORA_SQL);
+                ResultSet rset = ps.executeQuery();
+                while (rset.next()) {
+                    String cnpj_locadora = rset.getString("cnpj_locadora");
+                    String email_locadora = rset.getString("email_locadora");
+                    String senha_locadora = rset.getString("senha_locadora");
+                    String nome_locadora = rset.getString("nome_locadora");
+                    String cidade_locadora = rset.getString("cidade_locadora");
 
-    public List<Locadora> getAll() {
+                    Locadora locadora = new Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locadora, cidade_locadora);
+                    listaTodasLocadoras.add(locadora);
+                }
+            
+            } 
+        return listaTodasLocadoras;
+    }*/
+    public List<Locadora> listarTodasLocadoras() {
+        List<Locadora> listaTodasLocadoras = new ArrayList<>();
+        try {
+            Connection con = this.getConnection();
+            Statement statement = con.createStatement();
+            ResultSet rset = statement.executeQuery(LISTAR_LOCADORA_SQL);
+            while (rset.next()) {
+                String cnpj_locadora = rset.getString("cnpj_locadora");
+                String email_locadora = rset.getString("email_locadora");
+                String senha_locadora = rset.getString("senha_locadora");
+                String nome_locadora = rset.getString("nome_locadora");
+                String cidade_locadora = rset.getString("cidade_locadora");
+
+                Locadora locadora = new Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locadora, cidade_locadora);
+                listaTodasLocadoras.add(locadora);
+            }
+            rset.close();
+            statement.close();
+            con.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            return listaTodasLocadoras ;
+    }
+/*public List<Locadora> getAll() {
         List<Locadora> listaLocadora = new ArrayList<>();
         String sql = "SELECT * FROM Locadora";
         try {
@@ -60,58 +102,30 @@ public class LocadoraDAO extends GenericDAO {
         }
         return listaLocadora;
     }
+ */
 
-    
 
+    public List<Locadora> listarTodasPorCidade(String cidade) throws SQLException {
+            
+        List<Locadora> listaLocadorasCidades = new ArrayList<>();
+        try (Connection conn = this.getConnection()){            
+            PreparedStatement ps = conn.prepareStatement(LISTAR_LOCADORA_CIDADE_SQL);
+            ps.setString(1, cidade);
+            ResultSet rset = ps.executeQuery();
+            while (rset.next()) {
+                String cnpj_locadora = rset.getString("cnpj_locadora");
+                String email_locadora = rset.getString("email_locadora");
+                String senha_locadora = rset.getString("senha_locadora");
+                String nome_locadora = rset.getString("nome_locadora");
+                String cidade_locadora = rset.getString("cidade_locadora");
 
-    public List<Locadora> listarTodasLocadoras() throws SQLException {
-        List<Locadora> ret = new ArrayList<>();
-        try (Connection con = this.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(LISTAR_LOCADORA_SQL);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Locadora locadora = new Locadora();
-                //Usuario usuario = new Usuario();
-                //locadora.setId_locadora(rs.getInt("id_locadora"));
-                locadora.setEmail_locadora(rs.getString("email_locadora"));
-                locadora.setSenha_locadora(rs.getString("senha_locadora"));
-                locadora.setCpnj_locadora(rs.getString("cnpj_locadora"));
-                locadora.setNome_locadora(rs.getString("nome_locadora"));
-                locadora.setCidade_locadora(rs.getString("cidade_locadora"));
-
-                //locadora.setLocadora(locadora);
-                ret.add(locadora);
-
-            }
+                Locadora locadora = new Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locadora, cidade_locadora);
+                listaLocadorasCidades.add(locadora);
+            }  
         }
-        return ret;
+        return listaLocadorasCidades;
     }
 
-    public List<Locadora> listarTodasLocadorasPorCidade(String cidade_locadora) throws SQLException {
-        List<Locadora> ret = new ArrayList<>();
-
-        try (Connection con = this.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(LISTAR_LOCADORA_CIDADE_SQL);
-            ps.setString(1, cidade_locadora);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Locadora locadora = new Locadora();
-                // Usuario usuario = new Usuario();
-                // locadora.setId_locadora(rs.getInt("id_locadora"));
-                locadora.setEmail_locadora(rs.getString("email_locadora"));
-                locadora.setSenha_locadora(rs.getString("senha_locadora"));
-                locadora.setCpnj_locadora(rs.getString("cnpj_locadora"));
-                locadora.setNome_locadora(rs.getString("nome_locadora"));
-                locadora.setCidade_locadora(rs.getString("cidade_locadora"));
-
-                ret.add(locadora);
-
-            }
-        }
-        return ret;
-    }
 
     public void insert(Locadora locadora) {
         String sql = "INSERT INTO Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locadora, cidade_locadora) VALUES (?, ?, ?, ?, ?)";
@@ -127,8 +141,7 @@ public class LocadoraDAO extends GenericDAO {
             int i = statement.executeUpdate();
             statement.close();
             conn.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
@@ -172,14 +185,14 @@ public class LocadoraDAO extends GenericDAO {
         }
     }
 
-   public Locadora get(String cnpj_locadora) {
+    public Locadora get(String cnpj_locadora) {
         Locadora locadora = null;
         String sql = "SELECT * FROM Locadora WHERE cnpj_locadora = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            
+
             statement.setString(1, cnpj_locadora);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -195,7 +208,7 @@ public class LocadoraDAO extends GenericDAO {
             conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-            }
+        }
         return locadora;
-   }
+    }
 }

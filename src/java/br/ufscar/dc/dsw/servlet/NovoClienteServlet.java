@@ -16,7 +16,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Bianca
  */
-@WebServlet(urlPatterns = {"/novocliente"})
+@WebServlet(urlPatterns = {"/NovoClienteServlet"})
 public class NovoClienteServlet extends HttpServlet {
 
     @Override
@@ -35,7 +35,7 @@ public class NovoClienteServlet extends HttpServlet {
         //request.setCharacterEnconding("UTF-8");
         NovoClienteFormBean ncfb = new NovoClienteFormBean();
         BeanUtils.populate(ncfb, request.getParameterMap());
-        request.getSession().setAttribute("novoCliente", ncfb);
+        request.getSession().setAttribute("novoCliente.jsp", ncfb);
         List<String> mensagens = ncfb.validar();
         if (mensagens.isEmpty()) {
             request.getRequestDispatcher("confirmaCliente.jsp").forward(request, response);

@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />
     </head>
     <body>
-        <jsp:useBean id="cliente" class="br.ufscar.dc.dsw.model.Locadora" />
+        <jsp:useBean id="locadora" class="br.ufscar.dc.dsw.model.Locadora" />
         <h1>Nova Locadora</h1>
 		
 		<c:if test="${!empty requestScope.mensagens}">

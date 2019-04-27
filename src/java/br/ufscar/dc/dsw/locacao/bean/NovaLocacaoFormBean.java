@@ -4,8 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NovaLocacaoFormBean {
-    private String cnpj_locacao, data_locacao, nome_locadora;
+    private String cnpj_locadora, cpf_cliente, data_locacao, nome_locadora;
+    private int id_locacao;
 
+    public int getId_locacao() {
+          return id_locacao;
+    }
+    
+    public void setId_locacao(int id_locacao) {
+        this.id_locacao = id_locacao;
+    }
+    
+     public String getCpf_cliente() {
+        return cpf_cliente;
+    }
+     
+    public void setCpf_cliente(String cpf_cliente) {
+       this.cpf_cliente = cpf_cliente;
+    }
+    
     public String getNome_locadora() {
         return nome_locadora;
     }
@@ -15,12 +32,12 @@ public class NovaLocacaoFormBean {
     }
     
 
-    public String getCnpj_locacao() {
-        return cnpj_locacao;
+    public String getCnpj_locadora() {
+        return cnpj_locadora;
     }
 
-    public void setCnpj_locacao(String cnpj_locacao) {
-        this.cnpj_locacao = cnpj_locacao;
+    public void setCnpj_locadora(String cnpj_locadora) {
+        this.cnpj_locadora = cnpj_locadora;
     }
 
     public String getData_locacao() {
@@ -35,7 +52,7 @@ public class NovaLocacaoFormBean {
         if (nome_locadora.trim().length() == 0) {
             mensagens.add("Nome não pode ser vazio!");
         }
-        if (cnpj_locacao.trim().length() == 0) {
+        if (cnpj_locadora.trim().length() == 0) {
             mensagens.add("CNPJ não pode ser vazio!");
         }
 		if (data_locacao.trim().length() == 0){

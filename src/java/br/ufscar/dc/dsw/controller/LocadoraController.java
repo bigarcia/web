@@ -68,12 +68,12 @@ public class LocadoraController extends HttpServlet {
         }
     }
 
-    private void lista(HttpServletRequest request, HttpServletResponse response) //listar todas as locacoes
-            throws ServletException, IOException {
-        List<Locadora> listarLocadora = dao.getAll();
-        request.setAttribute("listaLocadora", listarLocadora);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("locacadora/lista.jsp");
-        dispatcher.forward(request, response);
+    private void lista(HttpServletRequest request, HttpServletResponse response) //listar todas as locadoras
+        throws ServletException, IOException {
+            List<Locadora> listarLocadora = dao.listarTodasLocadoras();
+            request.setAttribute("listaLocadora", listarLocadora);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("locacadora/lista.jsp");
+            dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
@@ -120,8 +120,8 @@ public class LocadoraController extends HttpServlet {
 
     private void remove(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Locadora locadora = new Locadora(id);
+        String cnpj_locadora = (request.getParameter("cnpj_locadora"));
+        Locadora locadora = new Locadora(cnpj_locadora);
         dao.delete(locadora);
         response.sendRedirect("lista");
     }

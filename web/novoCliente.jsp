@@ -10,16 +10,16 @@
     <body>
         <jsp:useBean id="cliente" class="br.ufscar.dc.dsw.model.Cliente" />
         <h1>Novo cliente</h1>
+
+        <c:if test="${!empty requestScope.mensagens}">
+                <ul class="erro">
+                <c:forEach items="${requestScope.mensagens}" var="mensagem">
+                        <li>${mensagem}</li>
+                </c:forEach>
+                </ul>
+        </c:if>
 		
-		<c:if test="${!empty requestScope.mensagens}">
-			<ul class="erro">
-			<c:forEach items="${requestScope.mensagens}" var="mensagem">
-				<li>${mensagem}</li>
-			</c:forEach>
-			</ul>
-		</c:if>
-		
-        <form action="novocliente" method="post">
+        <form action="NovoClienteServlet" method="post">
             <fieldset>
                 <legend>Digite seus dados:</legend>
                 Nome: <input name="nome_cliente" type="text" value="${sessionScope.novoCliente.nome_cliente}" /><br/>

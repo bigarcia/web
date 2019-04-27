@@ -73,7 +73,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
     }
 }
 
-private void lista(HttpServletRequest request, HttpServletResponse response) //listar todas as locacoes
+private void lista(HttpServletRequest request, HttpServletResponse response) //listar todas os clientes
     throws ServletException, IOException {
     List<Cliente> listarCliente = dao.getAll();
     request.setAttribute("listaCliente", listarCliente);
@@ -89,8 +89,9 @@ private void apresentaFormCadastro(HttpServletRequest request, HttpServletRespon
 
 private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-    int id = Integer.parseInt(request.getParameter("id")); 
-    Cliente cliente = dao.get(id);
+    String cpf_cliente= request.getParameter("cpf_cliente");
+    //int id = Integer.parseInt(request.getParameter("id")); 
+    Cliente cliente = dao.get(cpf_cliente);
     RequestDispatcher dispatcher = request.getRequestDispatcher("cliente/formulario.jsp");
     request.setAttribute("cliente", cliente);
     dispatcher.forward(request, response);
@@ -127,8 +128,9 @@ private void atualize(HttpServletRequest request, HttpServletResponse response)
 }
 private void remove(HttpServletRequest request, HttpServletResponse response)
     throws IOException {
-    int id = Integer.parseInt(request.getParameter("id")); //id = cpf?
-    Cliente cliente = new Cliente(id);
+    String cpf_cliente = request.getParameter("cpf_cliente");
+    //int id = Integer.parseInt(request.getParameter("id")); //id = cpf?
+    Cliente cliente = new Cliente(cpf_cliente);
     dao.delete(cliente);
     response.sendRedirect("lista");
     }

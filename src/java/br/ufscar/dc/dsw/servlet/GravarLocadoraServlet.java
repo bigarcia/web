@@ -29,14 +29,22 @@ public class GravarLocadoraServlet extends HttpServlet {
 		
 		try {
 			LocadoraDAO locadoraDAO = new LocadoraDAO();
+                        String cnpj_locadora = nlfb.getCnpj_locadora();
+                        String email_locadora = nlfb.getEmail_locadora();
+                        String senha_locadora = nlfb.getSenha_locadora();
+                        String nome_locadora = nlfb.getNome_locadora();
+                        String cidade_locadora = nlfb.getCidade_locadora();
+                        
 
-			Locadora locadora = new Locadora();
+                        Locadora locadora = new Locadora(cnpj_locadora, email_locadora, senha_locadora, nome_locadora, cidade_locadora);
+			
+                        /*Locadora locadora = new Locadora();
 			locadora.setCpnj_locadora(nlfb.getCnpj_locadora());
 			locadora.setEmail_locadora(nlfb.getEmail_locadora());
 			locadora.setSenha_locadora(nlfb.getSenha_locadora());
 			locadora.setNome_locadora(nlfb.getNome_locadora());
 			locadora.setCidade_locadora(nlfb.getCidade_locadora());
-			locadora = locadoraDAO.gravarLocadora(locadora);
+			locadora = locadoraDAO.gravarLocadora(locadora);*/
 			
 			request.setAttribute("mensagem", "Obrigado pelo Cadastro!");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
